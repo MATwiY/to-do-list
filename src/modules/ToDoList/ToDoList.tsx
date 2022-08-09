@@ -1,61 +1,40 @@
 import React, { useState } from "react";
+import { NoteInput } from "../ToDoInput/ToDoInput";
+import { ToDoDisplay } from "../ToDoDisplay/ToDoDisplay";
 import styles from "./ToDoList.module.scss";
 
 const Notes = [
-  "First note of the day",
-  "Learning programming, so much fun",
-  "Happy Day :)",
+  {
+    id: 1,
+    value:
+      "First note of the day! It provides an implicit definition of children (see below) - however there are some issues with the implicit children type (e.g. DefinitelyTyped#33006), and it might be considered a better style to be explicit about components that consume children, anyway.",
+  },
+  {
+    id: 2,
+    value: "Learning programming, so much fun",
+  },
+  {
+    id: 3,
+    value: "Happy Day :)",
+  },
 ];
 
 export const ToDoList: React.FC = () => {
-  const [state, setState] = useState<string[]>(Notes);
-  const [item, setItem] = useState("");
+  const [state, setState] = useState(Notes);
 
-  const handleInput = () => {
-    let i = item;
-    setState((prev) => [i, ...prev]);
-    setItem("");
+  const handleInput = (input: string) => {
+    const newItem = { id: state.length + 1, value: input };
+    setState((prev) => [...prev, newItem]);
   };
 
   const handleDelete = (index: number) => {
-    setState([
-      ...state.slice(0, index),
-      ...state.slice(index + 1, state.length),
-    ]);
+    setState(state.filter((item) => item.id !== index));
   };
 
   return (
     <div className={styles.Page}>
-      <div className={styles.InputList}>
-        <input
-          className={styles.InputItem}
-          placeholder="Type your note"
-          value={item}
-          onChange={(e) => {
-            setItem(e.target.value);
-          }}
-        />
-        <button
-          className={styles.AddItemButton}
-          onClick={() => {
-            item.trim().length > 0 ? handleInput() : console.log("error");
-          }}
-        >
-          Add
-        </button>
-      </div>
-      <div className={styles.NotesList}>
-        <ul>
-          {state.map((note, index) => (
-            <ol key={index}>
-              <li>{note}</li>
-              <button type="button" onClick={() => handleDelete(index)}>
-                X
-              </button>
-            </ol>
-          ))}
-        </ul>
-      </div>
+      <NoteInput state={state} handleInput={handleInput} />
+      <ToDoDisplay list={state} handleDelete={handleDelete} />
     </div>
   );
 };

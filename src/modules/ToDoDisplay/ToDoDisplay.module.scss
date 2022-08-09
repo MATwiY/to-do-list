@@ -1,0 +1,49 @@
+.todo_list {
+  flex: 1;
+  margin: 1rem 0;
+  width: 70vw;
+  background-color: #2d2d2e;
+  border-radius: 12px;
+  box-shadow: 1px 1px 8px;
+}
+
+.todo_item {
+  display: flex;
+  background-color: #5c5d5f;
+  margin: 1rem;
+  padding: 0.6rem;
+  border-radius: 12px;
+  gap: 1rem;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.267);
+
+  h1 {
+    font-size: 1rem;
+    color: #b0b3b8;
+    gap: 1rem;
+  }
+}
+
+.todo_item:hover {
+  background-color: #545557;
+}
+
+.todo_delete_btn {
+  display: flex;
+  flex-grow: 1;
+  margin: auto;
+  justify-content: flex-end;
+}
+
+.todo_delete_btn button {
+  width: 25px;
+  height: 25px;
+  color: #e4aeae;
+  font-weight: bold;
+  background-color: crimson;
+  border: 1px solid #bb1234;
+  border-radius: 12px;
+}
+
+.todo_delete_btn button:hover {
+  background-color: rgb(173, 14, 46);
+}
