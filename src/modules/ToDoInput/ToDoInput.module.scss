@@ -6,15 +6,17 @@
 
 .todo_input {
   font-size: 2em;
-
+  border: none;
   border-radius: 6px;
-  border-color: #2d2d2e;
+  // border-color: #2d2d2e;
+  box-shadow: 1px 1px 3px;
   background-color: #5c5d5f;
 }
 
 .todo_submit_btn {
   width: 4rem;
   font-weight: bolder;
+  border: 1px solid;
   border-radius: 0.4em;
   background-color: #3f87da;
   box-shadow: 1px 1px 3px;
